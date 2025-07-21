@@ -1,0 +1,6 @@
+ultralytics
+opencv-python-headless 
+numpy 
+easyocr
+langchain_google_genai
+langchain-core 

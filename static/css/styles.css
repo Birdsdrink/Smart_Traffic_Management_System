@@ -1,0 +1,73 @@
+body {
+  background-color: #0a0518 !important;
+  color: white !important;
+  font-family: "Segoe UI", sans-serif !important;
+}
+.navbar-nav .nav-link {
+  color: white !important;
+}
+.form-container {
+  max-width: 900px;
+  margin: 5rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #2d263f;
+}
+.form-image {
+  background: url("https://www.bit-cctv.com/uploads/image/20210315/Transportation-And-Traffic2.png")
+    center/cover no-repeat;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem;
+  color: #fff;
+}
+.form-image h4 {
+  font-weight: 300;
+}
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-social img {
+  width: 20px;
+  height: 20px;
+}
+.form-control,
+.form-check-input {
+  background-color: #453d5d;
+  border: none;
+  color: #fff;
+}
+.form-control::placeholder {
+  color: #b1aac6;
+}
+
+
+
+#video-container {
+    width: 640px;
+    transition: width 0.3s;
+}
+
+#video-container.fullscreen {
+    width: 100%;
+}
+
+#video-frame {
+    width: 100%;
+    border: 3px solid #333;
+    border-radius: 10px;
+}
+
+#controls {
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}

@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% load static%} {% block content %}
+
+<!-- Row 1 -->
+<div class="row mx-auto">
+  <!-- Column 1 -->
+  <div class="col-md-6 col-12 p-4">
+    <h1 class="fw-bold">SMART</h1>
+    <h1 class="fw-bold">TRAFFIC MANAGEMENT</h1>
+    <h1 class="fw-bold">SYSTEM</h1>
+    <p class="mt-3">
+      Powered by cutting-edge Computer Vision and Machine Learning algorithms
+      and trained on YOLO dataset, our system delivers exceptional traffic
+      management with industry-leading accuracy.
+    </p>
+    <div class="mt-4">
+      <a href="{% url 'login' %}"
+        ><button class="btn btn-primary btn-custom px-4 py-2 me-2">
+          Get Started
+        </button></a
+      >
+      <button class="btn btn-outline-primary btn-custom px-4 py-2">
+        Learn More
+      </button>
+    </div>
+
+    <!--Cards-->
+    <div class="row g-4 justify-content-between py-5">
+      <!-- Card 1 -->
+      <div class="col-12 col-lg-4">
+        <div class="card bg-secondary text-center text-light border-0">
+          <div class="card-body p-1">
+            <h5 class="card-title fw-bold">96.8%</h5>
+            <p class="card-text">Peak Accuracy</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-12 col-lg-4">
+        <div class="card bg-secondary text-center text-light border-0">
+          <div class="card-body p-1">
+            <h5 class="card-title fw-bold">4</h5>
+            <p class="card-text">ML Models</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-12 col-lg-4">
+        <div class="card bg-secondary text-center text-light border-0">
+          <div class="card-body p-1">
+            <h5 class="card-title fw-bold">2</h5>
+            <p class="card-text">Classifications</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Column 2 -->
+  <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+    <img
+      src="{% static 'images/traffic management.png' %}"
+      alt="Traffic Management"
+      class="img-fluid"
+      style="max-width: 100%; height: auto"
+    />
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+# Django-specific
+*.log
+*.pot
+*.pyc
+*.mp4
+__pycache__/
+local_settings.py
+db.sqlite3
+media/
+
+# Environment
+.env
+venv/
+env/
+ENV/
+*.egg-info/
+*.eggs/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Testing and coverage
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.cache
+
+# IDE files
+.vscode/
+.idea/
+
+# Build and distribution
+build/
+dist/
+*.spec
+
+# Documentation
+docs/_build/

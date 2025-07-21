@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Traffic Management Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #1f1f1f;
+        color: white;
+      }
+      .dashboard {
+        padding: 1rem;
+      }
+      .card {
+        background-color: #2a2a2a;
+        color: white;
+      }
+      .btn-custom {
+        background-color: #ff6600;
+        color: white;
+      }
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+
+      .video-box {
+          transition: all 0.3s ease-in-out;
+          border: 3px solid #343a40;
+          border-radius: 10px;
+      }
+
+      .fullscreen {
+          width: 100% !important;
+          height: auto !important;
+      }
+
+      .videoframefullscreen {
+          width: 1080px !important;
+          height: auto !important;
+      }
+
+      .minimized {
+          width: 880px;
+      }
+
+      .btn-overlay {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            z-index: 10;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid dashboard">
+      <!-- Top Bar -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex gap-2 align-items-center">
+          <h4 class="mb-0">🚦 Traffic Management System</h4>
+          <span class="badge bg-secondary">Controller</span>
+        </div>
+        <div class="d-flex gap-3">
+          <span>📍 243.4 km</span>
+          <span>🌧️ Rain, 36°C</span>
+          <span class="text-primary"
+            >Status:
+            <span class="highlight text-success">Monitoring</span></span
+          >
+          <span>🕒 {% now "jS F Y" %}</span>
+          <span></span><a href="{% url 'logout' %}">Logout</a></span>
+        </div>
+      </div>
+
+      <!-- Main Grid -->
+      <div class="row g-3">
+        <!-- Video Preview -->
+        <div id="video-card" class="col-lg-8 minimized">
+          <div class="card px-3 py-2">
+            <h5>📹 Live Traffic Feed (4K - 19.67 FPS)</h5>
+            <div class="d-flex">
+                <img id="video-frame" class="video-box fullscreen" src="{% url 'video-feed' %}" alt="Video Stream">
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <span>Camera: <strong>#1 - Intersection A</strong></span>
+              <span>FPS: <strong>30</strong></span>
+              <span><button class="btn btn-primary" onclick="toggleSize()">Maximize / Minimize</button></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="col-lg-4">
+          <div class="card p-3">
+            <h5>Settings</h5>
+            <div class="mb-2">🔋 Battery: 50% (2663 / 4366 mAh)</div>
+            <div class="mb-2">🌡️ Temp: 27°C</div>
+
+            <div class="mb-3">
+              <label class="form-label">Confidence Level</label>
+              <input
+                type="range"
+                class="form-range"
+                min="0"
+                max="300"
+                value="200"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Resolution px</label>
+              <input
+                type="range"
+                class="form-range"
+                min="0"
+                max="100"
+                value="60"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Confidence Level</label>
+              <input
+                type="range"
+                class="form-range"
+                min="0"
+                max="300"
+                value="200"
+              />
+            </div>
+
+            <div class="btn-group w-100" role="group">
+              <button type="button" class="btn btn-outline-light">ISO</button>
+              <button type="button" class="btn btn-custom">HDR</button>
+              <button type="button" class="btn btn-outline-light">DVR</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="col-12">
+          <div class="card p-3">
+            <h5 class="mb-3">Traffic Analysis</h5>
+            <div class="row text-center">
+              <div class="col">
+                <div>Total Vehicles Today</div>
+                <h6 class="text-primary">1,243</h6>
+              </div>
+              <div class="col">
+                <div>Peak Hour</div>
+                <h6 class="text-warning">5:00 PM</h6>
+              </div>
+              <div class="col">
+                <div>Accident Locations</div>
+                <h6 class="text-danger">3 hotspots</h6>
+              </div>
+              <div class="col">
+                <div>Camera Uptime</div>
+                <h6 class="text-success">99.2%</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Display Resolution -->
+        <div class="col-12">
+          <div class="card p-3">
+            <h6>Display Resolution</h6>
+            <div class="btn-group" role="group" aria-label="Resolution buttons">
+              <input
+                type="radio"
+                class="btn-check"
+                name="res"
+                id="res1"
+                checked
+              />
+              <label class="btn btn-outline-light" for="res1">1920x1080</label>
+
+              <input type="radio" class="btn-check" name="res" id="res2" />
+              <label class="btn btn-outline-light" for="res2">1280x720</label>
+
+              <input type="radio" class="btn-check" name="res" id="res3" />
+              <label class="btn btn-outline-light" for="res3">854x480</label>
+
+              <input type="radio" class="btn-check" name="res" id="res4" />
+              <label class="btn btn-outline-light" for="res4">640x360</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+        function toggleSize() {
+            const videocard = document.getElementById('video-card');
+            const videoframe = document.getElementById('video-frame');
+            videocard.classList.toggle('fullscreen');
+            videocard.classList.toggle('minimized');
+            videoframe.classList.toggle('videoframefullscreen');
+            videoframe.classList.toggle('minimized');
+        }
+    </script>
+  </body>
+</html>

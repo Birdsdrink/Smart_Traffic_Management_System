@@ -1,0 +1,111 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<!-- Error and Success Messages -->
+ {% if messages %}
+        {% for message in messages %}
+            {% if messages.tags == 'error' %}
+                <center><h4 style="color: firebrick;">{{message}}</h4></center>
+            {% else %}
+                <center><h4 style="color: dodgerblue;">{{message}}</h4></center>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+<!-- PAGE INFO -->
+<div class="container form-container shadow-lg d-flex flex-column flex-md-row">
+  <!-- Left Side -->
+  <div class="col-md-6 form-image text-center">
+    <div>
+      <h4>Capturing Moments,<br />Creating Memories</h4>
+    </div>
+  </div>
+
+  <!-- Right Side -->
+  <div class="col-md-6 p-5">
+    <h2 class="mb-3">Create an account</h2>
+    <p>
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-decoration-none">Log in</a>
+    </p>
+
+    <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="First name"
+            name="first_name"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Last name"
+            name="last_name"
+          />
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            name="username"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            name="email"
+          />
+        </div>
+      </div>
+
+      <div class="row g-2 mb-3">
+        <div class="col">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Enter your password"
+            name="password"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm your password"
+            name="confirm_password"
+          />
+        </div>
+      </div>
+
+      <div class="form-check mb-4">
+        <input class="form-check-input" type="checkbox" id="terms" />
+        <label class="form-check-label text-light" for="terms">
+          I agree to the
+          <a href="#" class="text-decoration-none text-light"
+            >Terms & Conditions</a
+          >
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary w-100 mb-3"
+        style="background-color: #7e6de7; border: none"
+      >
+        Create account
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

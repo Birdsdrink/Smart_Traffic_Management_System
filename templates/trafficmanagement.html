@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Traffic Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #1c1e22;
+      color: #f1f1f1;
+    }
+    .card {
+      background-color: #2a2d32;
+      border: none;
+    }
+    .highlight {
+      color: #00ff88;
+    }
+    .btn-custom {
+      background-color: #ff6600;
+      color: white;
+    }
+    .video-box {
+      background-color: #000;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid p-3">
+  <!-- Top Bar -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">🚦 Traffic Management System</h4>
+    <div class="d-flex gap-3 align-items-center">
+      <span class="text-info">Status: <span class="highlight">Monitoring</span></span>
+      <span>🕒 <span id="clock">--:--</span></span>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="row g-3">
+    <!-- Live Feed -->
+    <div class="col-lg-8">
+      <div class="card p-3">
+        <h5 class="mb-3">Live Traffic Feed</h5>
+        <div class="video-box rounded">
+          [ WebCam Feed Here via OpenCV ]
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <span>Camera: <strong>#1 - Intersection A</strong></span>
+          <span>FPS: <strong>30</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detection Panel -->
+    <div class="col-lg-4">
+      <div class="card p-3">
+        <h5>Detection Summary</h5>
+        <ul class="list-group list-group-flush mt-2">
+          <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+            Speeding Vehicles <span class="text-warning">12 detected</span>
+          </li>
+          <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+            Accidents <span class="text-danger">2 incidents</span>
+          </li>
+          <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+            Average Speed <span class="text-info">54 km/h</span>
+          </li>
+          <li class="list-group-item bg-transparent text-light d-flex justify-content-between">
+            YOLOv8 Confidence <span class="text-success">> 90%</span>
+          </li>
+        </ul>
+        <div class="mt-3 d-grid">
+          <button class="btn btn-custom">Export Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analytics -->
+    <div class="col-12">
+      <div class="card p-3">
+        <h5 class="mb-3">Traffic Analysis</h5>
+        <div class="row text-center">
+          <div class="col">
+            <div>Total Vehicles Today</div>
+            <h6 class="text-primary">1,243</h6>
+          </div>
+          <div class="col">
+            <div>Peak Hour</div>
+            <h6 class="text-warning">5:00 PM</h6>
+          </div>
+          <div class="col">
+            <div>Accident Locations</div>
+            <h6 class="text-danger">3 hotspots</h6>
+          </div>
+          <div class="col">
+            <div>Camera Uptime</div>
+            <h6 class="text-success">99.2%</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Clock Script -->
+<script>
+  function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('clock').textContent = time;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
