@@ -36,19 +36,21 @@ print(f"Using device: {device}")
 
 # Load YOLOv11n model on the selected device
 model = YOLO("yolo11n.pt").to(device)
-vehicle_classes = ['car']
+vehicle_classes = ['person', 'bicycle', 'car', 'motorcycle', 'bus', 'truck', 'train', 'boat']
 
 # OpenCV VideoCapture (webcam or video)
-rtsp_url = "rtsp://admin:12345@41.174.163.212:8554/live/0"
-cap = cv2.VideoCapture(rtsp_url)
+rtsp_url = "rtsp://admin:12345@41.174.173.239:8554/live/0"
+
+cap = cv2.VideoCapture(rtsp_url, cv2.CAP_FFMPEG)
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 10)  # Increase buffer size
 
 def gen_frames():
     while True:
         success, frame = cap.read()
         if not success:
-                continue
+            continue
 
-        frame = cv2.resize(frame, (640, 340))
+        #frame = cv2.resize(frame, (640, 340))
         results = model(frame)
         for result in results:
             boxes = result.boxes

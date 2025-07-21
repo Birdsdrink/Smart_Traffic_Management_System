@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 *.mp4
+*.pt
 __pycache__/
 local_settings.py
 db.sqlite3
